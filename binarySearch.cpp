@@ -1,43 +1,51 @@
-#include<iostream>
+#include<bits/stdc++.h>
 
 using namespace std;
 
-int binarySearch(int arr[], int n, int x){
+int binarySearch(int arr[], int arrsize, int num)
+{
+    int start = 0;
+    int end = arrsize;
 
-    // starting point and ending point
-    int l = 0;
-    int r = n-1;
+    while(start<=end){
+        int mid = (start+end)/2;
 
-    while (l<=r){
-        int mid = (l+r)/2;
-
-        if (arr[mid]==x) return mid;
-
-        if (arr[mid]<x) l = mid+1;
-
-        else {
-            r = mid-1;
+        if(arr[mid]==num){
+            return mid;
+        }
+        else if (arr[mid]>num) { 
+            end = mid-1;
+        }
+        else{
+            start = mid+1;
         }
     }
-
     return -1;
-
-
-
+    
 }
 
-int main (){
+int main(){
 
-    // array lenggth and array init
-    int n,x;
-    cin>>n>>x;
-    int arr[n];
+    // array size
+    int arrsize;
+    cin>>arrsize;
 
-    // taking input of array
-    for (int i=0; i<n; i++){
+    // init array
+    int arr[arrsize];
+
+    // taking input for array
+    for (int i = 0; i < arrsize; i++)
+    {
         cin>>arr[i];
     }
 
-    cout<<binarySearch(arr,n,x);
+    // array size
+    int num;
+    cin>>num;
+    
+    // calling the function
+    int ans = binarySearch(arr, arrsize, num);
+    cout<<ans;
 
+    return 0;
 }
